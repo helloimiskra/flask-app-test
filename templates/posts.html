@@ -3,22 +3,20 @@
 {% endblock %} {% block body %}
 <h1>All Posts</h1>
 
-<hr>
+<hr />
 
 <h2>Create New Blog Post:</h2>
-<form action='/posts' method="POST">
-    Title: <input type='text' name='title' id='title'>
-    <br> 
-    Author: <input type="text" name='author' id='author'>
-    <br>
-    Post: <input type="text" name='content' id='content'>
-    <br>
-    <input type="submit" value="Post">
+<form action="/posts" method="POST">
+    Title: <input type="text" name="title" id="title" />
+    <br /> Author: <input type="text" name="author" id="author" />
+    <br /> Post: <input type="text" name="content" id="content" />
+    <br />
+    <input type="submit" value="Post" />
 </form>
 
-<hr> {% for post in posts %}
+<hr /> {% for post in posts %}
 <h2>{{ post.title }}</h2>
-  {% if post.author %}
+{% if post.author %}
 <h3>By: {{ post.author }}</h3>
 {%else%}
 <h3>By: N/A</h3>
@@ -26,5 +24,5 @@
 
 <p>{{ post.content }}</p>
 <a href="/posts/delete/{{post.id}}">Delete</a>
-
-{%endfor%} {% endblock %}
+<a href="/posts/edit/{{post.id}}">Edit</a>
+<hr /> {%endfor%} {% endblock %}
