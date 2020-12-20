@@ -20,7 +20,7 @@ class BlogPost(db.Model):
         return "Blog post " + str(self.id)
 
 
-@app.route('/')
+@app.route('/home')
 def index():
     return render_template('index.html')
 

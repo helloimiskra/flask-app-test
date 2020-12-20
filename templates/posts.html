@@ -7,22 +7,57 @@
 
 <h2>Create New Blog Post:</h2>
 <form action="/posts" method="POST">
-    Title: <input type="text" name="title" id="title" />
-    <br /> Author: <input type="text" name="author" id="author" />
-    <br /> Post: <input type="text" name="content" id="content" />
-    <br />
-    <input type="submit" value="Post" />
-</form>
 
+    <label for="title">Title:</label>
+    <input class="form-control" type="text" name="title" id="title" placeholder="Enter Title" aria-label="Enter Title" />
+    <br />
+
+    <label for="author">Author:</label>
+    <input class="form-control" type="text" name="author" id="author" placeholder="Enter Author" aria-label="Enter Author" />
+    <br />
+
+    <label for="content">Post</label>
+    <textarea class="form-control" placeholder="Leave a post here" id="content" name="content" aria-label="Enter Content"></textarea>
+
+
+
+
+    <br />
+    <input type="submit" value="Submit Post" />
+</form>
 <hr /> {% for post in posts %}
+<div>
+    <div class="bg-light p-5 rounded">
+        <div class="col-sm-8 mx-auto">
+            <h2>{{ post.title }}</h2>
+            {% if post.author %}
+            <small>Written by: {{ post.author }} on {{post.date_posted}}</small> {%else%}
+            <small>Written by: Unknown on {{post.date_posted}}</small> {%endif%}
+            <br>
+            <p style="white-space:pre-wrap">{{ post.content }}</p>
+            <br>
+            <a class="btn btn-danger" href="/posts/delete/{{post.id}}">Delete</a>
+            <a class="btn btn-primary" href="/posts/edit/{{post.id}}">Edit</a>
+            <br>
+
+        </div>
+    </div>
+</div>
+<hr /> {%endfor%}
+
+
+<!-- <hr /> {% for post in posts %}
 <h2>{{ post.title }}</h2>
 {% if post.author %}
-<h3>By: {{ post.author }}</h3>
-{%else%}
-<h3>By: N/A</h3>
-{%endif%}
+<small>Written by: {{ post.author }} on {{post.date_posted}}</small> {%else%}
+<small>Written by: Unknown on {{post.date_posted}}</small> {%endif%}
+<br>
+<p style="white-space:pre-wrap">{{ post.content }}</p>
+<br>
+<a class="btn btn-danger" href="/posts/delete/{{post.id}}">Delete</a>
+<a class="btn btn-primary" href="/posts/edit/{{post.id}}">Edit</a>
+<br>
+<hr /> {%endfor%}  -->
 
-<p>{{ post.content }}</p>
-<a href="/posts/delete/{{post.id}}">Delete</a>
-<a href="/posts/edit/{{post.id}}">Edit</a>
-<hr /> {%endfor%} {% endblock %}
+
+{% endblock %}
